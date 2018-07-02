@@ -25,7 +25,7 @@ namespace InterviewGUISoftware.Model
         public static CSVInstanceObject CSVToObject(string currentLine)
         {
             //Split csv string into string array
-            string[] values = currentLine.Split(',');
+            string[] values = currentLine.Split(';');
             CSVInstanceObject instanceObject = new CSVInstanceObject();
             instanceObject.index = Convert.ToInt32(values[0]);
             instanceObject.uKL30V = Convert.ToDecimal(values[1]);
