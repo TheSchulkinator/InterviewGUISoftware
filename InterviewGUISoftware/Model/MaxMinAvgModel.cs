@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace InterviewGUISoftware.Model
 {
-    class MaxMinAvgModel
+    public class MaxMinAvgModel
     {
         //vars to store the max min and avg for test results
-        string test;
-        decimal max;
-        decimal min;
-        decimal avg;
+        public string test;
+        public decimal max;
+        public decimal min;
+        public decimal avg;
 
         public static MaxMinAvgModel maxMinAvgObject(string valueTest, decimal valueMax, decimal valueMin,
             decimal valueAvg)

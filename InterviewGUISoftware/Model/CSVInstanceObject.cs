@@ -11,14 +11,14 @@ namespace InterviewGUISoftware.Model
         //Create a class that will map the CSV file into objects
 
         // vars that map to CSV 
-        int index;
-        decimal uKL30V;
-        decimal EPB_L;
-        decimal EPB_R;
-        decimal AIN2_MON_VAC_SUP;
-        decimal AIN3;
-        decimal AIN4;
-        decimal AIN5;
+        public int index;
+        public decimal uKL30V;
+        public decimal EPB_L;
+        public decimal EPB_R;
+        public decimal AIN2_MON_VAC_SUP;
+        public decimal AIN3;
+        public decimal AIN4;
+        public decimal AIN5;
 
 
         //Map string to objects
