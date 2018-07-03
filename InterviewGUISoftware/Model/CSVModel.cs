@@ -8,11 +8,11 @@ using System.IO;
 
 namespace InterviewGUISoftware
 {
-    class CSVModel
+    public class CSVModel
     {
         //Read data from CSV file then create a list of instance objects to hold it
         //CSV Data added to output folder so using relative path to reference
-        static List<CSVInstanceObject> populateInstanceObjects() {
+       public static List<CSVInstanceObject> populateInstanceObjects() {
             List<CSVInstanceObject> instanceObjectValues = File.ReadAllLines("Data\\Data.csv")
                 .Skip(2)
                 .Select(v => CSVInstanceObject.CSVToObject(v))

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterviewGUISoftware.Model
 {
-    class CSVInstanceObject
+    public class CSVInstanceObject
     {
         //Create a class that will map the CSV file into objects
 

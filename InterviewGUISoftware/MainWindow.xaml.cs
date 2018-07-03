@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using InterviewGUISoftware.ViewModel;
 
 namespace InterviewGUISoftware
 {
@@ -23,6 +24,13 @@ namespace InterviewGUISoftware
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new BaseViewModel();
+        }
+
+        private void DataGrid_CopyingRowClipboardContent(object sender, DataGridRowClipboardEventArgs e)
+        {
+
         }
     }
 }
