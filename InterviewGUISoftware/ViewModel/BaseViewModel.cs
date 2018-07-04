@@ -9,6 +9,7 @@ using InterviewGUISoftware.Utilities;
 using Prism.Commands;
 using System.Windows.Input;
 using System.IO;
+using System.Reflection;
 
 namespace InterviewGUISoftware.ViewModel
 {
@@ -45,6 +46,7 @@ namespace InterviewGUISoftware.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMinValue)));
             }
         }
+
         public int TMaxValue
         {
             get { return tMaxValue; }
@@ -170,6 +172,26 @@ namespace InterviewGUISoftware.ViewModel
             return true;
         }
 
+        //Export button click handler
+        public ICommand ExportGraphButtonCommand
+        {
+            get { return new DelegateCommand<object>(ExportGraphFuncToCall, ExportGraphFuncToEvaluate); }
+        }
+
+        private void ExportGraphFuncToCall(object context)
+        {
+            string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\Names.txt");
+
+            List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
+            var csvFull = CreateCSVFromList.CreateCSV(testObjects);
+            File.WriteAllText(filepath, csvFull.ToString());
+
+        }
+
+        private bool ExportGraphFuncToEvaluate(object context)
+        {
+            return true;
+        }
 
     }
 }

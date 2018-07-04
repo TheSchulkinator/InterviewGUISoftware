@@ -24,7 +24,7 @@
         <TextBlock x:Name="promptText" HorizontalAlignment="Stretch" Margin="10,235,8,0" TextWrapping="Wrap" Text="{Binding PromptText}" VerticalAlignment="Top"/>
         <Button Content="Export 10Hz" Command="{Binding ExportLowButtonCommand}" HorizontalAlignment="Left" Margin="68,256,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="exportHigh" Content="Export 100Hz" Command="{Binding ExportHighButtonCommand}" HorizontalAlignment="Left" Margin="208,256,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Graph" HorizontalAlignment="Left" Margin="359,256,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Graph" HorizontalAlignment="Left" Command="{Binding ExportGraphButtonCommand}" Margin="359,256,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
