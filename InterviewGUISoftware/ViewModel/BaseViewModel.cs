@@ -8,6 +8,7 @@ using InterviewGUISoftware.Model;
 using InterviewGUISoftware.Utilities;
 using Prism.Commands;
 using System.Windows.Input;
+using System.IO;
 
 namespace InterviewGUISoftware.ViewModel
 {
@@ -117,26 +118,54 @@ namespace InterviewGUISoftware.ViewModel
         }
 
         //Export button click handler
-        public ICommand ExportButtonCommand
+        public ICommand ExportLowButtonCommand
         {
-            get { return new DelegateCommand<object>(ExportFuncToCall, ExportFuncToEvaluate); }
+            get { return new DelegateCommand<object>(ExportLowFuncToCall, ExportLowFuncToEvaluate); }
         }
 
-        private void ExportFuncToCall(object context)
+        private void ExportLowFuncToCall(object context)
         {
+            //Open file save dialog and save csv file
             Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.Filter = "CSV|*.csv";
 
             if (dialog.ShowDialog() == true)
             {
                 List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
                 List<CSVInstanceObject> reducedSampleRateObjects = SampleRateConverter.ConvertSampleRate(testObjects);
-
-
+                var csv = CreateCSVFromList.CreateCSV(reducedSampleRateObjects);
+                File.WriteAllText(dialog.FileName, csv.ToString());
             }
           
         }
 
-        private bool ExportFuncToEvaluate(object context)
+        private bool ExportLowFuncToEvaluate(object context)
+        {
+            return true;
+        }
+
+        //Export button click handler
+        public ICommand ExportHighButtonCommand
+        {
+            get { return new DelegateCommand<object>(ExportHighFuncToCall, ExportHighFuncToEvaluate); }
+        }
+
+        private void ExportHighFuncToCall(object context)
+        {
+            //Open file save dialog and save csv file
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.Filter = "CSV|*.csv";
+
+            if (dialog.ShowDialog() == true)
+            {
+                List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
+                var csv = CreateCSVFromList.CreateCSV(testObjects);
+                File.WriteAllText(dialog.FileName, csv.ToString());
+            }
+
+        }
+
+        private bool ExportHighFuncToEvaluate(object context)
         {
             return true;
         }

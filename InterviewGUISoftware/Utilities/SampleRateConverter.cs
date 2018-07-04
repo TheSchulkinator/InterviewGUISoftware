@@ -9,6 +9,7 @@ namespace InterviewGUISoftware.Utilities
 {
     class SampleRateConverter
     {
+        //Reduce the sample rate of the file from 100hz to 10 hz
         public static List<CSVInstanceObject> ConvertSampleRate(List<CSVInstanceObject> csvList)
         {
             return csvList.Where((x, i) => i % 10 == 0).ToList();

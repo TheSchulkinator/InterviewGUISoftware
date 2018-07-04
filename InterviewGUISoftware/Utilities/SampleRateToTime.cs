@@ -8,6 +8,7 @@ namespace InterviewGUISoftware.Utilities
 {
     class SampleRateToTime
     {
+        //Pass in sample rate and convert to ms
         public static int convertSampleRateToTime(int index, int timeConversion)
         {
             return index *= timeConversion;
