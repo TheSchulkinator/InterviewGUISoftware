@@ -17,18 +17,19 @@ namespace InterviewGUISoftware.ViewModel
         private int tMaxValue;
         private int tMax = TimeFilter.testObjects.Count;
         private List<MaxMinAvgModel> maxMinAvgList;
+        private string errorText;
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         //set the max and min time for the filter
         public string TestMaxHintString
         {
-            get { return "tMax: " + TimeFilter.testObjects.Count.ToString(); }
+            get { return "Tmax: " + TimeFilter.testObjects.Count.ToString(); }
             set { }  
         } 
         public string TestMinHintString
         {
-            get { return "tMin: 0"; }
+            get { return "Tmin: 0"; }
             set { }
         }
 
@@ -68,7 +69,17 @@ namespace InterviewGUISoftware.ViewModel
         {
             if (tMinValue >= 0 && tMaxValue <= tMax && tMinValue <= tMaxValue)
             {
+                ErrorText = "";
                 return true;
+            } else if (!(tMinValue >= 0))
+            {
+                ErrorText = "Please enter a minimum value greater than or equal to 0";
+            } else if (!(tMaxValue <= tMax))
+            {
+                ErrorText = "Please enter a maximum value less than or equal to Tmax";
+            } else if(!(tMinValue <= tMaxValue))
+            {
+                ErrorText = "Please enter a value of Tmin that is less than or equal to Tmax";
             }
             return false;
         }
@@ -80,5 +91,14 @@ namespace InterviewGUISoftware.ViewModel
             set { }
         }
 
+        //Text to display if error occured in time submission
+        public string ErrorText
+        {
+            get { return errorText; }
+            set {
+                errorText = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(ErrorText)));
+            }
+        }
     }
 }
