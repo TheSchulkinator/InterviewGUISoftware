@@ -80,6 +80,5 @@ namespace InterviewGUISoftware.ViewModel
             set { }
         }
 
-
     }
 }
