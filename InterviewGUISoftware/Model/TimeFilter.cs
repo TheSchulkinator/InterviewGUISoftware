@@ -18,7 +18,7 @@ namespace InterviewGUISoftware.Model
             MaxMinAvgModel singleModel;
 
             //find the difference between min and max in order to select range
-            int tDifference = timeMax - timeMin;
+            int tDifference = timeMax - timeMin + 1;
             filteredTestObjects = testObjects.GetRange(timeMin, tDifference);
 
             //populate the maxminavg list

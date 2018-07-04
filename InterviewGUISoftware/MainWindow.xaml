@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid x:Name="MainLayout">
-        <DataGrid x:Name="MinMaxAverageDataGrid" ItemsSource="{Binding MinMaxAvgModelData}" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" Height="146">
+        <DataGrid x:Name="MinMaxAverageDataGrid" ItemsSource="{Binding MinMaxAvgModelData}" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" Height="162">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Test}" Header="Test Name"/>
                 <DataGridTextColumn Binding="{Binding Max}" Header="Max"/>
@@ -15,12 +15,13 @@
                 <DataGridTextColumn Binding="{Binding Avg}" Header="Avg"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="tMinTextBox" Text="{Binding TMinValue}" HorizontalAlignment="Left" Height="23" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValue}" HorizontalAlignment="Left" Height="23" Margin="162,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="SubmitTime" Command="{Binding SubmitButtonCommand}" Content="Submit Time" HorizontalAlignment="Left" Margin="317,180,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock x:Name="tMinHint" HorizontalAlignment="Left" Margin="10,156,0,0" TextWrapping="Wrap" Text="{Binding TestMinHintString}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="162,156,0,0" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="ErrorMessage" HorizontalAlignment="Stretch" Height="16" Margin="13,202,0,0" TextWrapping="Wrap" Text="{Binding ErrorText}" VerticalAlignment="Top"/>
+        <TextBox x:Name="tMinTextBox" Text="{Binding TMinValue}" HorizontalAlignment="Left" Height="23" Margin="10,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValue}" HorizontalAlignment="Left" Height="23" Margin="162,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="SubmitTime" Command="{Binding SubmitButtonCommand}" Content="Submit Time" HorizontalAlignment="Left" Margin="313,194,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="tMinHint" HorizontalAlignment="Left" Margin="10,170,0,0" TextWrapping="Wrap" Text="{Binding TestMinHintString}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="162,177,0,0" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ErrorMessage" Foreground="Red" HorizontalAlignment="Stretch" Height="16" Margin="10,219,3,0" TextWrapping="Wrap" Text="{Binding ErrorText}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="promptText" HorizontalAlignment="Stretch" Margin="10,235,8,0" TextWrapping="Wrap" Text="{Binding PromptText}" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

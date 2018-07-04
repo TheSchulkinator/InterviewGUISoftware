@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using InterviewGUISoftware.Model;
 using Prism.Commands;
 using System.Windows.Input;
-using InterviewGUISoftware.Model;
 
 namespace InterviewGUISoftware.ViewModel
 {
@@ -15,16 +14,17 @@ namespace InterviewGUISoftware.ViewModel
     {
         private int tMinValue;
         private int tMaxValue;
-        private int tMax = TimeFilter.testObjects.Count;
+        private int tMax = TimeFilter.testObjects.Count - 1;
         private List<MaxMinAvgModel> maxMinAvgList;
         private string errorText;
+        private string promptText;
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         //set the max and min time for the filter
         public string TestMaxHintString
         {
-            get { return "Tmax: " + TimeFilter.testObjects.Count.ToString(); }
+            get { return "Tmax: " + tMax.ToString(); }
             set { }  
         } 
         public string TestMinHintString
@@ -50,6 +50,7 @@ namespace InterviewGUISoftware.ViewModel
             {
                 tMaxValue = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMaxValue)));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(SubmitButtonCommand)));
             }
         }
 
@@ -98,6 +99,16 @@ namespace InterviewGUISoftware.ViewModel
             set {
                 errorText = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(ErrorText)));
+            }
+        }
+
+        //Text to prompt user to enter valid Range
+        public string PromptText
+        {
+            get { return promptText; }
+            set {
+                promptText = "Please enter a valid time range between Tmin and Tmax";
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(PromptText)));
             }
         }
     }
