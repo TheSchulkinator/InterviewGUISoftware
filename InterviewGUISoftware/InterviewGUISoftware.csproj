@@ -72,8 +72,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\MaxMinAvgModel.cs" />
+    <Compile Include="Utilities\SampleRateConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="Model\TimeFilter.cs" />
+    <Compile Include="Utilities\TimeFilter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

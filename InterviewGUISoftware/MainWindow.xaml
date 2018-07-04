@@ -22,6 +22,7 @@
         <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="162,177,0,0" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
         <TextBlock x:Name="ErrorMessage" Foreground="Red" HorizontalAlignment="Stretch" Height="16" Margin="10,219,3,0" TextWrapping="Wrap" Text="{Binding ErrorText}" VerticalAlignment="Top"/>
         <TextBlock x:Name="promptText" HorizontalAlignment="Stretch" Margin="10,235,8,0" TextWrapping="Wrap" Text="{Binding PromptText}" VerticalAlignment="Top"/>
+        <Button Content="Export" Command="{Binding ExportButtonCommand}" HorizontalAlignment="Left" Margin="68,256,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

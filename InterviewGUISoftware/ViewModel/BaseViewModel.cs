@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InterviewGUISoftware.Model;
+using InterviewGUISoftware.Utilities;
 using Prism.Commands;
 using System.Windows.Input;
 
@@ -54,37 +55,6 @@ namespace InterviewGUISoftware.ViewModel
             }
         }
 
-        //Add click command and validation
-        public ICommand SubmitButtonCommand
-        {
-            get { return new DelegateCommand<object>(FuncToCall, FuncToEvaluate); }
-        }
-
-        private void FuncToCall(object context)
-        {
-            maxMinAvgList = TimeFilter.filterForTime(tMaxValue, tMinValue);
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(MinMaxAvgModelData)));
-        }
-
-        private bool FuncToEvaluate(object context)
-        {
-            if (tMinValue >= 0 && tMaxValue <= tMax && tMinValue <= tMaxValue)
-            {
-                ErrorText = "";
-                return true;
-            } else if (!(tMinValue >= 0))
-            {
-                ErrorText = "Please enter a minimum value greater than or equal to 0";
-            } else if (!(tMaxValue <= tMax))
-            {
-                ErrorText = "Please enter a maximum value less than or equal to Tmax";
-            } else if(!(tMinValue <= tMaxValue))
-            {
-                ErrorText = "Please enter a value of Tmin that is less than or equal to Tmax";
-            }
-            return false;
-        }
-
         //Bind Datagrid 
         public List<MaxMinAvgModel> MinMaxAvgModelData
         {
@@ -111,5 +81,66 @@ namespace InterviewGUISoftware.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(PromptText)));
             }
         }
+
+        //Add click command and validation 
+        public ICommand SubmitButtonCommand
+        {
+            get { return new DelegateCommand<object>(FuncToCall, FuncToEvaluate); }
+        }
+
+        private void FuncToCall(object context)
+        {
+            maxMinAvgList = TimeFilter.filterForTime(tMaxValue, tMinValue);
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(MinMaxAvgModelData)));
+        }
+
+        private bool FuncToEvaluate(object context)
+        {
+            if (tMinValue >= 0 && tMaxValue <= tMax && tMinValue <= tMaxValue)
+            {
+                ErrorText = "";
+                return true;
+            }
+            else if (!(tMinValue >= 0))
+            {
+                ErrorText = "Please enter a minimum value greater than or equal to 0";
+            }
+            else if (!(tMaxValue <= tMax))
+            {
+                ErrorText = "Please enter a maximum value less than or equal to Tmax";
+            }
+            else if (!(tMinValue <= tMaxValue))
+            {
+                ErrorText = "Please enter a value of Tmin that is less than or equal to Tmax";
+            }
+            return false;
+        }
+
+        //Export button click handler
+        public ICommand ExportButtonCommand
+        {
+            get { return new DelegateCommand<object>(ExportFuncToCall, ExportFuncToEvaluate); }
+        }
+
+        private void ExportFuncToCall(object context)
+        {
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+
+            if (dialog.ShowDialog() == true)
+            {
+                List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
+                List<CSVInstanceObject> reducedSampleRateObjects = SampleRateConverter.ConvertSampleRate(testObjects);
+
+
+            }
+          
+        }
+
+        private bool ExportFuncToEvaluate(object context)
+        {
+            return true;
+        }
+
+
     }
 }

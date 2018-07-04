@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InterviewGUISoftware.Model;
 
-namespace InterviewGUISoftware.Model
+namespace InterviewGUISoftware.Utilities
 {
     public class TimeFilter
     {
