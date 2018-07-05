@@ -12,36 +12,47 @@ namespace InterviewGUISoftware.Utilities
         //Use office interop to create an excel spreadsheet with a basic graph
         public static void exportGraph(string shortPath, string longPath, int shortLength, int longLength)
         {
-            Microsoft.Office.Interop.Excel.Application xlexcel;
-            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            try
+            {
+                Excel.Application xlexcel;
+                Excel.Worksheet xlWorkSheet;
+                Excel.Worksheet xlWorkSheetLong;
 
-            object misValue = System.Reflection.Missing.Value;
-            xlexcel = new Excel.Application();
-            var xlWorkBooks = xlexcel.Workbooks;
-            xlexcel.Visible = true;
+                object misValue = System.Reflection.Missing.Value;
+                xlexcel = new Excel.Application();
+                var xlWorkBooks = xlexcel.Workbooks;
+                xlexcel.Visible = true;
 
 
-            xlWorkBooks.OpenText(shortPath, misValue, misValue, Excel.XlTextParsingType.xlDelimited,
-                                 Excel.XlTextQualifier.xlTextQualifierNone, misValue, misValue,
-                                 misValue, misValue, misValue, misValue, misValue, misValue, misValue,
-                                 misValue, misValue, misValue, misValue);
+                xlWorkBooks.OpenText(shortPath, misValue, misValue, Excel.XlTextParsingType.xlDelimited,
+                                     Excel.XlTextQualifier.xlTextQualifierNone, misValue, misValue,
+                                     misValue, misValue, misValue, misValue, misValue, misValue, misValue,
+                                     misValue, misValue, misValue, misValue);
 
-            xlWorkSheet = (Excel.Worksheet)xlWorkBooks[1].Worksheets.get_Item(1);
-            xlWorkSheet.Shapes.AddChart(misValue, misValue, misValue, misValue, misValue).Select();
-            xlexcel.ActiveChart.ApplyCustomType(Excel.XlChartType.xlLineMarkers);
-            xlexcel.ActiveChart.SetSourceData(xlWorkSheet.Range["$B$1:$C$" + (shortLength + 1)]);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBooks[1].Worksheets.get_Item(1);
+                xlWorkSheet.Shapes.AddChart(misValue, misValue, misValue, misValue, misValue).Select();
+                xlexcel.ActiveChart.ApplyCustomType(Excel.XlChartType.xlLineMarkers);
+                xlexcel.ActiveChart.SetSourceData(xlWorkSheet.Range["$B$1:$C$" + (shortLength + 1)]);
 
-            Excel.Worksheet newWorksheet;
-            newWorksheet = (Excel.Worksheet)xlWorkBooks[1].Worksheets.Add();
 
-            //Open second workbook to copy worksheet into orginal (two csv files can not be added to same worksheet)
-            var xlApp = new Excel.Application { Visible = false };
-            Excel.Workbook csvWorkbook = xlApp.Workbooks.Open(longPath);
-            Excel.Worksheet worksheetCSV = ((Excel.Worksheet)csvWorkbook.Worksheets[1]);
-            worksheetCSV.Copy(worksheetCSV);
+                //Open second workbook to copy worksheet into orginal (two csv files can not be added to same worksheet)
+                Excel.Workbook csvWorkbook = xlexcel.Workbooks.Open(longPath);
+                Excel.Worksheet worksheetCSV = ((Excel.Worksheet)csvWorkbook.Worksheets[1]);
 
-            newWorksheet.Paste();
+                worksheetCSV.Copy(xlWorkSheet);
 
+                //Close workbook
+                csvWorkbook.Close();
+
+                xlWorkSheetLong = (Excel.Worksheet)xlWorkBooks[1].Sheets["100Hz"];
+                xlWorkSheetLong.Shapes.AddChart(misValue, misValue, misValue, misValue, misValue).Select();
+                xlexcel.ActiveChart.ApplyCustomType(Excel.XlChartType.xlLineMarkers);
+                xlexcel.ActiveChart.SetSourceData(xlWorkSheetLong.Range["$B$1:$C$" + (longLength + 1)]);
+            } catch (Exception e)
+            {
+                Console.WriteLine("Error Message:" + e.ToString());
+            }
+            
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterviewGUISoftware.Utilities
 {
-    class SampleRateToTime
+    public class SampleRateToTime
     {
         //Pass in sample rate and convert to ms
         public static int convertSampleRateToTime(int index, int timeConversion)
