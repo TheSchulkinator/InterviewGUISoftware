@@ -23,7 +23,6 @@ namespace InterviewGUISoftware.Utilities
                 var xlWorkBooks = xlexcel.Workbooks;
                 xlexcel.Visible = true;
 
-
                 xlWorkBooks.OpenText(shortPath, misValue, misValue, Excel.XlTextParsingType.xlDelimited,
                                      Excel.XlTextQualifier.xlTextQualifierNone, misValue, misValue,
                                      misValue, misValue, misValue, misValue, misValue, misValue, misValue,
@@ -48,6 +47,7 @@ namespace InterviewGUISoftware.Utilities
                 xlWorkSheetLong.Shapes.AddChart(misValue, misValue, misValue, misValue, misValue).Select();
                 xlexcel.ActiveChart.ApplyCustomType(Excel.XlChartType.xlLineMarkers);
                 xlexcel.ActiveChart.SetSourceData(xlWorkSheetLong.Range["$B$1:$C$" + (longLength + 1)]);
+
             } catch (Exception e)
             {
                 Console.WriteLine("Error Message:" + e.ToString());
