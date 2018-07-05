@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:InterviewGUISoftware"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid x:Name="MainLayout">
-        <DataGrid x:Name="MinMaxAverageDataGrid" ItemsSource="{Binding MinMaxAvgModelData}" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Top" AutoGenerateColumns="False" Height="162">
+    <StackPanel x:Name="MainLayout">
+        <DataGrid x:Name="MinMaxAverageDataGrid" ItemsSource="{Binding MinMaxAvgModelData}" IsReadOnly="True" HorizontalAlignment="Stretch" Margin="8,8,8,8" VerticalAlignment="Top" AutoGenerateColumns="False" Height="162">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Test}" Header="Test Name"/>
                 <DataGridTextColumn Binding="{Binding Max}" Header="Max"/>
@@ -15,16 +15,23 @@
                 <DataGridTextColumn Binding="{Binding Avg}" Header="Avg"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="tMinTextBox" Text="{Binding TMinValue}" HorizontalAlignment="Left" Height="23" Margin="10,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValue}" HorizontalAlignment="Left" Height="23" Margin="162,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="SubmitTime" Command="{Binding SubmitButtonCommand}" Content="Submit Time" HorizontalAlignment="Left" Margin="313,194,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock x:Name="tMinHint" HorizontalAlignment="Left" Margin="10,170,0,0" TextWrapping="Wrap" Text="{Binding TestMinHintString}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="162,177,0,0" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="ErrorMessage" Foreground="Red" HorizontalAlignment="Stretch" Height="16" Margin="10,219,3,0" TextWrapping="Wrap" Text="{Binding ErrorText}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="promptText" HorizontalAlignment="Stretch" Margin="10,235,8,0" TextWrapping="Wrap" Text="{Binding PromptText}" VerticalAlignment="Top"/>
-        <Button Content="Export 10Hz" Command="{Binding ExportLowButtonCommand}" HorizontalAlignment="Left" Margin="68,256,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="exportHigh" Content="Export 100Hz" Command="{Binding ExportHighButtonCommand}" HorizontalAlignment="Left" Margin="208,256,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Graph" HorizontalAlignment="Left" Command="{Binding ExportGraphButtonCommand}" Margin="359,256,0,0" VerticalAlignment="Top" Width="75"/>
-
-    </Grid>
+        <TextBlock x:Name="promptText" HorizontalAlignment="Stretch" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding PromptText}" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock x:Name="tMinHint" HorizontalAlignment="Left" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding TestMinHintString}" VerticalAlignment="Top"/>
+                <TextBox x:Name="tMinTextBox" Text="{Binding TMinValue}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
+                <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValue}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </StackPanel>
+            <Button x:Name="SubmitTime" Command="{Binding SubmitButtonCommand}" Content="Submit Time" HorizontalAlignment="Left" Margin="8,0,8,10" VerticalAlignment="Bottom" Width="75"/>
+        </StackPanel>
+        <TextBlock x:Name="ErrorMessage" Foreground="Red" HorizontalAlignment="Stretch" Height="16" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding ErrorText}" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Export 10Hz" Command="{Binding ExportLowButtonCommand}" HorizontalAlignment="Left" Margin="8,0,8,8" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="exportHigh" Content="Export 100Hz" Command="{Binding ExportHighButtonCommand}" HorizontalAlignment="Left" Margin="8,0,8,8" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Graph" HorizontalAlignment="Left" Command="{Binding ExportGraphButtonCommand}" Margin="8,0,8,8" VerticalAlignment="Top" Width="75"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
