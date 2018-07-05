@@ -161,8 +161,8 @@ namespace InterviewGUISoftware.ViewModel
             if (dialog.ShowDialog() == true)
             {
                 List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
-                var csv = CreateCSVFromList.CreateCSV(testObjects);
-                File.WriteAllText(dialog.FileName, csv.ToString());
+                var longCsv = CreateCSVFromList.CreateCSV(testObjects);
+                File.WriteAllText(dialog.FileName, longCsv.ToString());
             }
 
         }
@@ -180,11 +180,20 @@ namespace InterviewGUISoftware.ViewModel
 
         private void ExportGraphFuncToCall(object context)
         {
-            string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\Names.txt");
+            //write CSV files locally in order to export them to excell
+            string fullFilepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\\100Hz.csv");
+            string sampledFilepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\\10Hz.csv");
 
             List<CSVInstanceObject> testObjects = CSVModel.populateInstanceObjects();
             var csvFull = CreateCSVFromList.CreateCSV(testObjects);
-            File.WriteAllText(filepath, csvFull.ToString());
+            File.WriteAllText(fullFilepath, csvFull.ToString());
+
+
+            List<CSVInstanceObject> reducedSampleRateObjects = SampleRateConverter.ConvertSampleRate(testObjects);
+            var shortCsv = CreateCSVFromList.CreateCSV(reducedSampleRateObjects);
+            File.WriteAllText(sampledFilepath, shortCsv.ToString());
+
+            AddExcelGraph.exportGraph(sampledFilepath, fullFilepath, reducedSampleRateObjects.Count, testObjects.Count);
 
         }
 
