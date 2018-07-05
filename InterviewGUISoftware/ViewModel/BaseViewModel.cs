@@ -20,19 +20,18 @@ namespace InterviewGUISoftware.ViewModel
         private int tMax = TimeFilter.testObjects.Count - 1;
         private List<MaxMinAvgModel> maxMinAvgList;
         private string errorText;
-        private string promptText;
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         //set the max and min time for the filter
         public string TestMaxHintString
         {
-            get { return "Tmax: " + tMax.ToString(); }
+            get { return "Tmax(ms): " + (tMax * 10).ToString(); }
             set { }  
         } 
         public string TestMinHintString
         {
-            get { return "Tmin: 0"; }
+            get { return "Tmin(ms): 0"; }
             set { }
         }
 
@@ -78,11 +77,8 @@ namespace InterviewGUISoftware.ViewModel
         //Text to prompt user to enter valid Range
         public string PromptText
         {
-            get { return promptText; }
-            set {
-                promptText = "Please enter a valid time range between Tmin and Tmax";
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(PromptText)));
-            }
+            get { return "Please enter a valid time range between Tmin and Tmax, time interval is 10ms between points"; ; }
+            set {}
         }
 
         //Add click command and validation 

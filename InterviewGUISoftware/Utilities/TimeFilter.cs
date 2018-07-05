@@ -14,12 +14,19 @@ namespace InterviewGUISoftware.Utilities
 
         public static List<MaxMinAvgModel> filterForTime(int timeMax, int timeMin)
         {
+            //Change time from index to ms
+            int adjustedMax = RoundTime.RoundToNearestTen(timeMax);
+            int adjustedMin = RoundTime.RoundToNearestTen(timeMin);
+
+            int indexMax = adjustedMax / 10;
+            int indexMin = adjustedMin / 10;
+
             List<MaxMinAvgModel> maxMinAvgList = new List<MaxMinAvgModel>();
             MaxMinAvgModel singleModel;
 
             //find the difference between min and max in order to select range
-            int tDifference = timeMax - timeMin + 1;
-            filteredTestObjects = testObjects.GetRange(timeMin, tDifference);
+            int tDifference = indexMax - indexMin + 1;
+            filteredTestObjects = testObjects.GetRange(indexMin, tDifference);
 
             //populate the maxminavg list
             for (int i = 0; i <= 6; i++)

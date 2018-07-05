@@ -7,7 +7,7 @@ using InterviewGUISoftware.Model;
 
 namespace InterviewGUISoftware.Utilities
 {
-    class SampleRateConverter
+    public class SampleRateConverter
     {
         //Reduce the sample rate of the file from 100hz to 10 hz
         public static List<CSVInstanceObject> ConvertSampleRate(List<CSVInstanceObject> csvList)

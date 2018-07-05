@@ -79,6 +79,7 @@
     <Compile Include="Model\MaxMinAvgModel.cs" />
     <Compile Include="Utilities\AddExcelGraph.cs" />
     <Compile Include="Utilities\CreateCSVFromList.cs" />
+    <Compile Include="Utilities\RoundTime.cs" />
     <Compile Include="Utilities\SampleRateConverter.cs" />
     <Compile Include="Utilities\SampleRateToTime.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
