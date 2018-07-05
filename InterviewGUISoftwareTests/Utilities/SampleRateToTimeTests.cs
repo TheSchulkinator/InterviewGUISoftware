@@ -14,7 +14,12 @@ namespace InterviewGUISoftware.Utilities.Tests
         [TestMethod()]
         public void convertSampleRateToTimeTest()
         {
-            Assert.Fail();
+            int testIndex = 20;
+            int testTimeConversion = 10;
+            int expected = 200;
+
+            int actual = SampleRateToTime.convertSampleRateToTime(testIndex, testTimeConversion);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
