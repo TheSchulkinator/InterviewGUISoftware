@@ -17,7 +17,7 @@ namespace InterviewGUISoftware.ViewModel
     {
         private int tMinValue;
         private int tMaxValue;
-        private int tMax = TimeFilter.testObjects.Count - 1;
+        private int tMax = TimeFilter.testObjects.Count * 10 - 1;
         private List<MaxMinAvgModel> maxMinAvgList;
         private string errorText;
 
