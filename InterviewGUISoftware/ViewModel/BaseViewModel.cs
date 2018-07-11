@@ -15,18 +15,26 @@ namespace InterviewGUISoftware.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        private int tMinValue;
-        private int tMaxValue;
-        private int tMax = TimeFilter.testObjects.Count * 10 - 1;
+        //getter setter private methods
+        private string tMinValueString;
+        private string tMaxValueString;
         private List<MaxMinAvgModel> maxMinAvgList;
         private string errorText;
 
+        //int for converted strings
+        int tMinValue;
+        int tMaxValue;
+
+        //event to notify UI of change
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
+        //int to store the current max
+        private int tMax = TimeFilter.testObjects.Count * 10 - 10;
 
         //set the max and min time for the filter
         public string TestMaxHintString
         {
-            get { return "Tmax(ms): " + (tMax * 10).ToString(); }
+            get { return "Tmax(ms): " + tMax.ToString(); }
             set { }  
         } 
         public string TestMinHintString
@@ -36,23 +44,24 @@ namespace InterviewGUISoftware.ViewModel
         }
 
         //get text from textbox on submit 
-        public int TMinValue
+        public string TMinValueString
         {
-            get { return tMinValue; }
+            get { return tMinValueString; }
             set
             {
-                tMinValue = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMinValue)));
+                tMinValueString = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMinValueString)));
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(SubmitButtonCommand)));
             }
         }
 
-        public int TMaxValue
+        public string TMaxValueString
         {
-            get { return tMaxValue; }
+            get { return tMaxValueString; }
             set
             {
-                tMaxValue = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMaxValue)));
+                tMaxValueString = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(TMaxValueString)));
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(SubmitButtonCommand)));
             }
         }
@@ -95,6 +104,25 @@ namespace InterviewGUISoftware.ViewModel
 
         private bool FuncToEvaluate(object context)
         {
+
+            //attempt to convert string to int or propmt user    
+            int checkTmax;
+            int checkTmin;
+
+            bool isTmax = Int32.TryParse(tMaxValueString, out checkTmax);
+            bool isTmin = Int32.TryParse(tMinValueString, out checkTmin);
+
+            if (!isTmax  && !isTmin)
+            {
+                ErrorText = "Please enter a valid number between Tmin and Tmax";
+                return false;
+
+            } else {
+                tMaxValue = checkTmax;
+                tMinValue = checkTmin;
+            }
+        
+
             if (tMinValue >= 0 && tMaxValue <= tMax && tMinValue <= tMaxValue)
             {
                 ErrorText = "";

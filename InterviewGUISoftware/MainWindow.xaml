@@ -19,11 +19,11 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <TextBlock x:Name="tMinHint" HorizontalAlignment="Left" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding TestMinHintString}" VerticalAlignment="Top"/>
-                <TextBox x:Name="tMinTextBox" Text="{Binding TMinValue}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="tMinTextBox" Text="{Binding TMinValueString}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock x:Name="tMaxHint" HorizontalAlignment="Left" Margin="8,0,8,8" TextWrapping="Wrap" Text="{Binding TestMaxHintString}" VerticalAlignment="Top"/>
-                <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValue}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="tMaxTextBox" Text="{Binding TMaxValueString}" HorizontalAlignment="Left" Height="23" Margin="8,0,8,8" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             </StackPanel>
             <Button x:Name="SubmitTime" Command="{Binding SubmitButtonCommand}" Content="Submit Time" HorizontalAlignment="Left" Margin="8,0,8,10" VerticalAlignment="Bottom" Width="75"/>
         </StackPanel>
