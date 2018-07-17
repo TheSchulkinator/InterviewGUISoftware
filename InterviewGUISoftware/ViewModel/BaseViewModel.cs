@@ -112,6 +112,11 @@ namespace InterviewGUISoftware.ViewModel
             bool isTmax = Int32.TryParse(tMaxValueString, out checkTmax);
             bool isTmin = Int32.TryParse(tMinValueString, out checkTmin);
 
+            if (tMaxValueString == null  || tMinValueString == null)
+            {
+                return false;
+            }
+
             if (!isTmax  && !isTmin)
             {
                 ErrorText = "Please enter a valid number between Tmin and Tmax";
